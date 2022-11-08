@@ -261,12 +261,14 @@ class agent(nn.Module):
         self.qnet_opt.zero_grad()
         self.q_loss.backward()
         self.qnet_opt.step()
+        self.q_ = q
 
         c = self.cnet(s1, s2).gather(1, i)
         self.c_loss = self.huber(c, target_c)
         self.cnet_opt.zero_grad()
         self.c_loss.backward()
         self.cnet_opt.step()
+        self.c_ = c
 
         grad_lam = -(torch.mean(c.detach(), dim=0) - self.alpha)
         self.grad_lam = grad_lam

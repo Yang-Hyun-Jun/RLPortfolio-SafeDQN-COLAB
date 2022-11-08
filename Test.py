@@ -51,7 +51,6 @@ class DQNTester:
                            min_trading_price=self.min_trading_price,
                            max_trading_price=self.max_trading_price)
 
-
         model_path = utils.SAVE_DIR + "/Models" + "/DQNPortfolio.pth"
 
         self.agent.epsilon = 0
