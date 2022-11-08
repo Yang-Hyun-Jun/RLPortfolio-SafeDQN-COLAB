@@ -173,6 +173,7 @@ class DQNLearner:
                     print(f"c_loss:{c_loss}")
                     print(f"q_loss:{q_loss}")
                     print(f"lam:{lam}")
+                    print(f"cost:{cost}")
                     print(f"grad_lam:{grad}")
                     print(f"q_value:{q}")
                     print(f"c_value:{c}")
