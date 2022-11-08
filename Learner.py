@@ -144,8 +144,8 @@ class DQNLearner:
                 state2 = next_state2
 
                 if steps_done % 300 == 0:
-                    q = self.agent.q_[0]
-                    c = self.agent.c_[0]
+                    q = self.agent.q_[0].detach()
+                    c = self.agent.c_[0].detach()
                     grad = self.agent.grad_lam
                     lam = self.agent.lam
                     p = self.agent.portfolio
@@ -172,8 +172,8 @@ class DQNLearner:
                     print(f"profitloss:{profitloss}")
                     print(f"c_loss:{c_loss}")
                     print(f"q_loss:{q_loss}")
-                    print(f"grad_lam:{grad}")
                     print(f"lam:{lam}")
+                    print(f"grad_lam:{grad}")
                     print(f"q_value:{q}")
                     print(f"c_value:{c}")
                     print("===========================================================================================")
