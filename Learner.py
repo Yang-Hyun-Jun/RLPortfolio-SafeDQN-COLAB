@@ -39,7 +39,7 @@ class DQNLearner:
 
         self.EPS_END = 0.05
         self.EPS_START = 0.9
-        self.EPS_DECAY = 1e+3
+        self.EPS_DECAY = 1e+5
 
         self.score_net = Score().to(device)
         self.qnet = Qnet(self.score_net, K).to(device)
@@ -117,7 +117,7 @@ class DQNLearner:
             state1 = self.environment.observe()
             state2 = self.agent.portfolio
             while True:
-                # self.agent.epsilon = self.EPS_END + (self.EPS_START - self.EPS_END) * np.exp(-1.*steps_done/self.EPS_DECAY)
+                self.agent.epsilon = self.EPS_END + (self.EPS_START - self.EPS_END) * np.exp(-1.*steps_done/self.EPS_DECAY)
                 self.agent.epsilon = self.EPS_START
 
                 index, action, trading, confidences = \
