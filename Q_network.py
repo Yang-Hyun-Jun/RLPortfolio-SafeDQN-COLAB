@@ -44,7 +44,7 @@ class Score(nn.Module):
 
         self.layer1 = nn.Linear(state1_dim, output_dim)
         # nn.init.kaiming_normal_(self.layer1.weight, nonlinearity="relu")
-        nn.init.ones_(self.layer1.weight)
+        nn.init.constant_(self.layer1.weight, 0.01)
 
     def forward(self, s1):
         x = self.layer1(s1)
@@ -67,9 +67,9 @@ class Qnet(nn.Module):
         # nn.init.kaiming_normal_(self.layer2.weight, nonlinearity="relu")
         # nn.init.kaiming_normal_(self.layer3.weight, nonlinearity="relu")
 
-        nn.init.ones_(self.layer1.weight)
-        nn.init.ones_(self.layer2.weight)
-        nn.init.ones_(self.layer3.weight)
+        nn.init.constant_(self.layer1.weight, 0.01)
+        nn.init.constant_(self.layer2.weight, 0.01)
+        nn.init.constant_(self.layer3.weight, 0.01)
 
     def forward(self, s1_tensor, portfolio):
 
