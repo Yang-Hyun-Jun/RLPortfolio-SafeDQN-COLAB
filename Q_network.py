@@ -11,31 +11,42 @@ torch.cuda.manual_seed(seed)
 torch.cuda.manual_seed_all(seed)
 
 
+# class Score(nn.Module):
+#     def __init__(self, state1_dim=5, output_dim=1):
+#         super().__init__()
+#
+#         self.state1_dim = state1_dim
+#         self.output_dim = output_dim
+#
+#         self.layer1 = nn.Linear(state1_dim, 128)
+#         self.layer2 = nn.Linear(128, 64)
+#         self.layer3 = nn.Linear(64, output_dim)
+#
+#         self.hidden_act = nn.ReLU()
+#         self.out_act = nn.Identity()
+#
+#         nn.init.kaiming_normal_(self.layer1.weight, nonlinearity="relu")
+#         nn.init.kaiming_normal_(self.layer2.weight, nonlinearity="relu")
+#         nn.init.kaiming_normal_(self.layer3.weight, nonlinearity="relu")
+#
+#     def forward(self, s1):
+#         x = self.layer1(s1)
+#         x = self.hidden_act(x)
+#         x = self.layer2(x)
+#         x = self.hidden_act(x)
+#         x = self.layer3(x)
+#         x = self.out_act(x)
+#         return x
+
 class Score(nn.Module):
     def __init__(self, state1_dim=5, output_dim=1):
         super().__init__()
 
-        self.state1_dim = state1_dim
-        self.output_dim = output_dim
-
-        self.layer1 = nn.Linear(state1_dim, 128)
-        self.layer2 = nn.Linear(128, 64)
-        self.layer3 = nn.Linear(64, output_dim)
-
-        self.hidden_act = nn.ReLU()
-        self.out_act = nn.Identity()
-
+        self.layer1 = nn.Linear(state1_dim, output_dim)
         nn.init.kaiming_normal_(self.layer1.weight, nonlinearity="relu")
-        nn.init.kaiming_normal_(self.layer2.weight, nonlinearity="relu")
-        nn.init.kaiming_normal_(self.layer3.weight, nonlinearity="relu")
 
     def forward(self, s1):
         x = self.layer1(s1)
-        x = self.hidden_act(x)
-        x = self.layer2(x)
-        x = self.hidden_act(x)
-        x = self.layer3(x)
-        x = self.out_act(x)
         return x
 
 
