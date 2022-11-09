@@ -117,8 +117,8 @@ class DQNLearner:
             state1 = self.environment.observe()
             state2 = self.agent.portfolio
             while True:
-                self.agent.epsilon = self.EPS_END + (self.EPS_START - self.EPS_END) * np.exp(-1.*steps_done/self.EPS_DECAY)
-                self.agent.epsilon = 0
+                # self.agent.epsilon = self.EPS_END + (self.EPS_START - self.EPS_END) * np.exp(-1.*steps_done/self.EPS_DECAY)
+                self.agent.epsilon = self.EPS_START
 
                 index, action, trading, confidences = \
                     self.agent.get_action(torch.tensor(state1, device=device).float().view(1, self.K, -1),

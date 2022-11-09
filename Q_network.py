@@ -43,7 +43,6 @@ class Score(nn.Module):
         super().__init__()
 
         self.layer1 = nn.Linear(state1_dim, output_dim)
-        # nn.init.kaiming_normal_(self.layer1.weight, nonlinearity="relu")
         nn.init.constant_(self.layer1.weight, 0.01)
 
     def forward(self, s1):
@@ -62,10 +61,6 @@ class Qnet(nn.Module):
         self.layer2 = nn.Linear(128, 64)
         self.layer3 = nn.Linear(64, 5**K)
         self.hidden_act = nn.ReLU()
-
-        # nn.init.kaiming_normal_(self.layer1.weight, nonlinearity="relu")
-        # nn.init.kaiming_normal_(self.layer2.weight, nonlinearity="relu")
-        # nn.init.kaiming_normal_(self.layer3.weight, nonlinearity="relu")
 
         nn.init.constant_(self.layer1.weight, 0.01)
         nn.init.constant_(self.layer2.weight, 0.01)
@@ -88,7 +83,6 @@ class Qnet(nn.Module):
         x = self.hidden_act(x)
         q = self.layer3(x)
         return q
-
 
 
 if __name__ == "__main__":
