@@ -84,6 +84,7 @@ class DQNTester:
                 print(f"balance:{self.agent.balance}")
                 print(f"stocks:{self.agent.num_stocks}")
                 print(f"trading:{trading}")
+                print(f"portfolio:{self.agent.portfolio}")
             if done:
                 print(f"model{self.agent.profitloss}")
                 break
